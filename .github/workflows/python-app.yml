@@ -82,7 +82,7 @@ jobs:
         run: mv dist/uppercase.exe dist/uppercase-${{ matrix.python-version }}.exe
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: uppercase-${{ matrix.python-version }}.exe
           path: dist/uppercase-${{ matrix.python-version }}.exe
