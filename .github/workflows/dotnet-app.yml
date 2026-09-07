@@ -1,0 +1,35 @@
+#NAME
+name: my_workflow_dotnetapp
+
+#TRIGGER
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'dotnetwebapp/**'
+      - '.github/workflows/dotnet-app.yml'
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+#JOBS
+jobs:
+  my_doetnet_job:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Download the code
+        uses: actions/checkout@v4
+      
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Build
+        run: dotnet build
+      
+      - name: Test
+        run: dotnet test
